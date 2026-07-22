@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Bag — Mandi Prime</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F7F3;
+  --surface:#FFFFFF;
+  --ink:#10241C;
+  --ink-soft:#54685C;
+  --ink-faint:#8C9A91;
+  --forest:#0F3326;
+  --forest-2:#164A37;
+  --gold:#AD8A3C;
+  --gold-soft:#F1E7CE;
+  --line:rgba(16,36,28,0.09);
+  --line-strong:rgba(16,36,28,0.16);
+  --danger:#AE3B34;
+  --success:#2E7A4D;
+  --radius:16px;
+  --shadow-sm: 0 1px 2px rgba(16,36,28,0.06), 0 1px 1px rgba(16,36,28,0.04);
+  --shadow-md: 0 8px 24px rgba(16,36,28,0.08), 0 2px 6px rgba(16,36,28,0.05);
+  --shadow-lg: 0 24px 60px rgba(16,36,28,0.16), 0 6px 16px rgba(16,36,28,0.08);
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"tnum" 1, "cv11" 1;
+}
+.serif{ font-family:'Fraunces', serif; }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+button{ font-family:inherit; }
+
+/* ---------------- Layout shells ---------------- */
+.container{ max-width:1180px; margin:0 auto; padding:0 28px; }
+@media (max-width:640px){ .container{ padding:0 18px; } }
+
+/* ---------------- Top navigation ---------------- */
+.nav{
+  position:sticky; top:0; z-index:60;
+  background:rgba(245,247,243,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1180px; margin:0 auto; padding:16px 28px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand .seal{
+  width:36px; height:36px; border-radius:50%;
+  background:var(--forest);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.brand .seal svg{ width:18px; height:18px; }
+.brand .word{ font-size:19px; letter-spacing:-0.01em; font-weight:600; }
+.brand .word em{ font-style:normal; color:var(--gold); font-family:'Fraunces', serif; }
+
+.nav-links{ display:flex; align-items:center; gap:30px; font-size:14px; color:var(--ink-soft); }
+.nav-links a{ position:relative; padding:6px 0; }
+.nav-links a.active{ color:var(--ink); font-weight:600; }
+.nav-links a.active::after{
+  content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px; background:var(--gold); border-radius:2px;
+}
+@media (max-width:900px){ .nav-links{ display:none; } }
+
+.nav-actions{ display:flex; align-items:center; gap:16px; }
+.icon-pill{
+  width:38px; height:38px; border-radius:50%; background:var(--surface); border:1px solid var(--line-strong);
+  display:flex; align-items:center; justify-content:center; position:relative; box-shadow:var(--shadow-sm);
+}
+.icon-pill .dot{
+  position:absolute; top:-3px; right:-3px; width:16px; height:16px; border-radius:50%;
+  background:var(--gold); color:var(--forest); font-size:9.5px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; border:2px solid var(--bg);
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:none; border-radius:999px; cursor:pointer; font-weight:600; font-size:14px;
+  padding:12px 24px; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-primary{ background:var(--forest); color:#fff; box-shadow:var(--shadow-sm); }
+.btn-primary:hover{ background:var(--forest-2); box-shadow:var(--shadow-md); transform:translateY(-1px); }
+.btn-gold{ background:var(--gold); color:var(--forest); }
+.btn-gold:hover{ filter:brightness(1.06); transform:translateY(-1px); }
+.btn-outline{ background:transparent; border:1.5px solid var(--line-strong); color:var(--ink); }
+.btn-outline:hover{ border-color:var(--ink); }
+.btn-ghost{ background:transparent; color:var(--ink-soft); padding:10px 14px; }
+.btn-sm{ padding:9px 16px; font-size:13px; }
+.btn-block{ width:100%; }
+
+/* ---------------- Seal / quality badge (signature motif) ---------------- */
+.seal-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--gold); color:var(--gold);
+  border-radius:999px; padding:6px 14px 6px 8px; font-size:12px; font-weight:600; letter-spacing:.02em;
+  background:rgba(173,138,60,0.06);
+}
+.seal-badge .ring{
+  width:20px; height:20px; border-radius:50%; border:1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center; font-size:10px;
+}
+
+/* ---------------- Section headings ---------------- */
+.eyebrow{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+h1,h2,h3{ margin:0; }
+.section-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:24px; flex-wrap:wrap; }
+.section-head h2{ font-size:28px; font-family:'Fraunces', serif; font-weight:600; }
+.section-head .see-all{ font-size:13.5px; color:var(--ink-soft); font-weight:600; }
+
+/* ---------------- Product cards ---------------- */
+.card-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+@media (max-width:1020px){ .card-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:720px){ .card-grid{ grid-template-columns:repeat(2,1fr); gap:14px; } }
+
+.p-card{
+  background:var(--surface); border-radius:var(--radius); border:1px solid var(--line);
+  box-shadow:var(--shadow-sm); overflow:hidden; transition:transform .18s ease, box-shadow .18s ease;
+  display:flex; flex-direction:column;
+}
+.p-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.p-card .media{
+  height:140px; display:flex; align-items:center; justify-content:center; font-size:52px;
+  position:relative;
+}
+.p-card .media.fruit{ background:linear-gradient(160deg,#FBEFE0,#F6E2C8); }
+.p-card .media.veg{ background:linear-gradient(160deg,#E8F1E5,#D9EAD3); }
+.p-card .badge-top{
+  position:absolute; top:10px; left:10px; font-size:10px; font-weight:700; letter-spacing:.03em;
+  padding:4px 9px; border-radius:20px; background:rgba(255,255,255,0.85); color:var(--success);
+}
+.p-card .badge-top.limited{ color:#946a1a; }
+.p-card .badge-top.out{ color:var(--danger); }
+.p-card .body{ padding:16px 16px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.p-card .name{ font-size:15.5px; font-weight:600; }
+.p-card .variety{ font-size:12.5px; color:var(--ink-soft); }
+.p-card .bottom{ margin-top:auto; padding-top:12px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); }
+.p-card .price{ font-size:16.5px; font-weight:700; }
+.p-card .price small{ font-size:11px; font-weight:500; color:var(--ink-soft); }
+.p-card .add-fab{
+  width:34px; height:34px; border-radius:50%; background:var(--forest); color:#fff; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:18px; line-height:0;
+}
+.p-card .add-fab:hover{ background:var(--gold); color:var(--forest); }
+
+/* ---------------- Category tiles ---------------- */
+.cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+@media (max-width:760px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+.cat-tile{
+  border-radius:var(--radius); padding:22px; min-height:110px; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:flex-end; box-shadow:var(--shadow-sm);
+  border:1px solid var(--line);
+}
+.cat-tile .icon{ font-size:30px; margin-bottom:8px; }
+.cat-tile .lbl{ font-weight:600; font-size:15px; }
+.cat-tile .count{ font-size:12px; color:var(--ink-soft); }
+
+/* ---------------- Forms ---------------- */
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:var(--ink-soft); }
+.field input, .field select{
+  width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid var(--line-strong);
+  background:var(--surface); font-size:14.5px; color:var(--ink); font-family:inherit;
+}
+.field input:focus, .field select:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(173,138,60,0.15); }
+
+/* ---------------- Misc ---------------- */
+.divider-dashed{ border-top:1px dashed var(--line-strong); }
+.footer{ border-top:1px solid var(--line); padding:36px 0; margin-top:60px; }
+.footer .container{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+.footer .cols{ font-size:12.5px; color:var(--ink-faint); }
+
+.ck-wrap{ padding:30px 0 80px; }
+.ck-steps{ display:flex; align-items:center; gap:10px; margin-bottom:30px; font-size:13px; color:var(--ink-faint); }
+.ck-steps .s{ display:flex; align-items:center; gap:8px; }
+.ck-steps .n{ width:22px;height:22px;border-radius:50%; background:var(--line); display:flex;align-items:center;justify-content:center; font-size:11px; font-weight:700; }
+.ck-steps .s.active{ color:var(--ink); font-weight:600; }
+.ck-steps .s.active .n{ background:var(--forest); color:#fff; }
+.ck-steps .sep{ width:30px; height:1px; background:var(--line-strong); }
+
+.ck-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:40px; align-items:flex-start; }
+@media (max-width:880px){ .ck-grid{ grid-template-columns:1fr; } }
+
+.cart-item{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); align-items:center; }
+.cart-item .thumb{ width:64px;height:64px;border-radius:14px; display:flex;align-items:center;justify-content:center; font-size:30px; flex-shrink:0; }
+.cart-item .info{ flex:1; }
+.cart-item .info .n{ font-weight:600; font-size:15px; }
+.cart-item .info .v{ font-size:12.5px; color:var(--ink-soft); }
+.cart-item .stepper{ transform:scale(0.9); transform-origin:right; }
+.cart-item .amt{ font-weight:700; font-size:15px; min-width:80px; text-align:right; }
+.cart-item .rm{ background:none; border:none; color:var(--danger); font-size:12px; cursor:pointer; margin-top:4px; }
+
+.promo-row{ display:flex; gap:10px; margin:22px 0; }
+.promo-row input{ flex:1; padding:12px 14px; border-radius:10px; border:1.5px solid var(--line-strong); font-size:14px; }
+
+.summary-card{ background:var(--surface); border-radius:20px; border:1px solid var(--line); box-shadow:var(--shadow-md); padding:24px; position:sticky; top:90px; }
+.summary-card h3{ font-size:17px; font-family:'Fraunces',serif; margin-bottom:16px; }
+.srow{ display:flex; justify-content:space-between; font-size:14px; color:var(--ink-soft); margin-bottom:10px; }
+.srow.total{ color:var(--ink); font-weight:700; font-size:18px; border-top:1px solid var(--line); padding-top:14px; margin-top:6px; }
+
+.fulfil-choice{ display:flex; gap:10px; margin:18px 0; }
+.fopt{ flex:1; border:1.5px solid var(--line-strong); border-radius:12px; padding:12px; text-align:center; font-size:13px; cursor:pointer; }
+.fopt.active{ border-color:var(--forest); background:rgba(15,51,38,0.05); color:var(--forest); font-weight:600; }
+</style></head><body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="seal">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.2 4.5L19 8l-3.5 3.4.8 4.9L12 14l-4.3 2.3.8-4.9L5 8l4.8-.5L12 3z" fill="#AD8A3C"/></svg>
+      </div>
+      <div class="word">Mandi <em>Prime</em></div>
+    </div>
+    <div class="nav-links">
+      <a class="">Home</a>
+      <a class="">Catalog</a>
+      <a class="">My Orders</a>
+      <a class="">Profile</a>
+    </div>
+    <div class="nav-actions">
+      <div class="icon-pill">🔔</div>
+      <div class="icon-pill">🧺<span class="dot">3</span></div>
+      <div class="icon-pill" style="width:auto;padding:0 14px;border-radius:20px;font-size:13px;font-weight:600;">RS</div>
+    </div>
+  </div>
+</nav>
+<div class="container ck-wrap">
+  <div class="ck-steps">
+    <div class="s active"><span class="n">1</span> Cart</div>
+    <div class="sep"></div>
+    <div class="s"><span class="n">2</span> Delivery</div>
+    <div class="sep"></div>
+    <div class="s"><span class="n">3</span> Review &amp; Confirm</div>
+  </div>
+
+  <div class="ck-grid">
+    <div>
+      <h2 class="serif" style="font-size:24px;font-weight:600;margin-bottom:6px;">Your Bag · 3 items</h2>
+      <div class="divider-dashed" style="margin-bottom:6px;"></div>
+
+      <div class="cart-item">
+        <div class="thumb" style="background:linear-gradient(160deg,#E8F1E5,#D3E8CC);">🧅</div>
+        <div class="info"><div class="n">Onion — Nashik</div><div class="v">Bulk grade · ₹1,850/quintal</div></div>
+        <div class="stepper"><button>−</button><input value="2"><button>+</button></div>
+        <div><div class="amt">₹3,700</div><button class="rm">Remove</button></div>
+      </div>
+      <div class="cart-item">
+        <div class="thumb" style="background:linear-gradient(160deg,#FBEFE0,#F3D9AE);">🍅</div>
+        <div class="info"><div class="n">Tomato — Local</div><div class="v">Grade A · ₹32/kg</div></div>
+        <div class="stepper"><button>−</button><input value="50"><button>+</button></div>
+        <div><div class="amt">₹1,600</div><button class="rm">Remove</button></div>
+      </div>
+      <div class="cart-item">
+        <div class="thumb" style="background:linear-gradient(160deg,#E8F1E5,#D3E8CC);">🥔</div>
+        <div class="info"><div class="n">Potato — Agra</div><div class="v">Table size · ₹1,240/quintal</div></div>
+        <div class="stepper"><button>−</button><input value="3"><button>+</button></div>
+        <div><div class="amt">₹3,720</div><button class="rm">Remove</button></div>
+      </div>
+
+      <div class="promo-row">
+        <input placeholder="Promo code">
+        <button class="btn btn-outline btn-sm">Apply</button>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <h3>Order Summary</h3>
+      <div class="srow"><span>Subtotal</span><span>₹9,020</span></div>
+      <div class="srow"><span>Loading charge</span><span>₹150</span></div>
+      <div class="srow"><span>Delivery</span><span>Free</span></div>
+      <div class="srow total"><span>Total</span><span>₹9,170</span></div>
+
+      <div class="fulfil-choice">
+        <div class="fopt active">🚚 Delivery</div>
+        <div class="fopt">🏬 Self Pickup</div>
+      </div>
+
+      <button class="btn btn-primary btn-block" style="margin-top:6px;">Continue to Review</button>
+      <div style="text-align:center;font-size:11.5px;color:var(--ink-faint);margin-top:12px;">Pay on delivery/pickup. Online payment coming soon.</div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="brand" style="gap:8px;">
+      <div class="seal" style="width:26px;height:26px;"><svg viewBox="0 0 24 24" fill="none" style="width:13px;height:13px;"><path d="M12 3l2.2 4.5L19 8l-3.5 3.4.8 4.9L12 14l-4.3 2.3.8-4.9L5 8l4.8-.5L12 3z" fill="#AD8A3C"/></svg></div>
+      <span style="font-size:14px;font-weight:600;">Mandi <em style="font-style:normal;color:var(--gold);font-family:'Fraunces',serif;">Prime</em></span>
+    </div>
+    <div class="cols">Wholesale fruit &amp; vegetable sourcing · Rates updated daily from the yard · For bulk enquiries, call the trade desk</div>
+  </div>
+</div>
+</body></html>
