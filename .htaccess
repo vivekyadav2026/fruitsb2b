@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent direct access to sensitive Laravel files/directories
+    RedirectMatch 404 ^/\.(git|env|editorconfig)
+    RedirectMatch 404 ^/(app|bootstrap|config|database|resources|routes|storage|tests)
+    RedirectMatch 404 ^/composer\.(json|lock)
+    RedirectMatch 404 ^/package\.(json|lock)
+    RedirectMatch 404 ^/artisan$
+
+    # Silently rewrite all requests to the public/ folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
